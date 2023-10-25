@@ -15,7 +15,7 @@ async def derivative_process(websocket):
 
 
 async def main():
-    async with websockets.serve(derivative_process, "localhost", 8765):
+    async with websockets.serve(derivative_process, "localhost", 8765, ping_timeout=None):
         await asyncio.Future()  # run forever
 
 
