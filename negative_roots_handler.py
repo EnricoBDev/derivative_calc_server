@@ -28,7 +28,7 @@ def get_real_solution(root: tuple):
 def subsitute_roots(expr):
     new_expr = expr
     for arg in preorder_traversal(expr):
-        if(type(arg) == Pow):
+        if(type(arg) == Pow and is_negative_root(arg.args)):
             real_solution = get_real_solution(get_root_args(arg))
             new_expr = new_expr.subs(arg, real_solution)
     return(new_expr)
