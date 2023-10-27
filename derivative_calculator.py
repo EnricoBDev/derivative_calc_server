@@ -1,11 +1,10 @@
+import json
 from sympy import limit, symbols, diff, simplify, S
 from sympy.parsing.latex import parse_latex
 
-#testing
-import json
-
 from format_expressions import format_dict
 from negative_roots_handler import subsitute_roots
+from e_handler import subs_e
 
 x = symbols("x")
 
@@ -15,7 +14,12 @@ def calculate_derivative(request_dict) -> tuple:
     x_0 = str(request_dict.get("x_0")) # because json.loads treats a numeric value inside quotation marks as int
 
     function = parse_latex(latex_function)
+    function = subs_e(function)
+
     x_0 = parse_latex(x_0)
+    x_0 = subs_e(x_0)
+    x_0 = subsitute_roots(x_0)
+
     prime_derivative = diff(simplify(function))
 
     right_limit = limit(prime_derivative, x, x_0, "+")

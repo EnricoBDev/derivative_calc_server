@@ -1,4 +1,4 @@
-from sympy import Mul ,Integer, Pow, Rational, real_root, oo, preorder_traversal
+from sympy import Pow, real_root, oo, preorder_traversal
 
 def get_root_args(root) -> tuple:
     return root.args
